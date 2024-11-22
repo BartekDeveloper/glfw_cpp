@@ -18,13 +18,15 @@ workspace "SecondChance"
 
 
 project "CppApp"
+    platforms {"x64"}
     kind "ConsoleApp"
     language "C++"
     targetdir "bin/%{cfg.buildcfg}"
     
     files { "src/**.cpp", "src/**.h" }
     includedirs { "include" }
-    -- links { "Maths" }
+    libdirs { "lib", "lib/glfw.dll" }
+    links { "glew32d", "glfw3", "opengl32" }
     
     filter "configurations:Debug"
         runtime "Debug"
@@ -33,3 +35,4 @@ project "CppApp"
     filter "configurations:Release"
         runtime "Release"
         optimize "On"
+        
